@@ -1,6 +1,7 @@
 import psycopg2
 
 def get_connection_info():
+    """Get connection information from user input."""
     
     user = input("Enter username: ")
     password = input("Enter password: ")
