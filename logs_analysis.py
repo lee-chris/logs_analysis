@@ -59,6 +59,30 @@ def print_top_authors(cursor):
         print("{0} - {1} views".format(name, count))
 
 
+def print_days_with_error(cursor):
+    """Print the days that had more than 1% error."""
+    
+    cursor.execute("""
+        select day, cnt_error / total
+        from (
+            select date_trunc('day', time) as day,
+                   sum(case when status <> '200 OK' then 1 else 0 end) as cnt_error,
+                   count(*) * 1.0 as total
+              from log
+            group by day
+        ) x
+        where cnt_error / total > 0.01
+        order by day
+        """)
+    
+    results = cursor.fetchall()
+    
+    print("\nDays with high amount of error:\n")
+    
+    for day, percent in results:
+        print("{0:{dfmt}} - {1:.{prec}}% errors".format(day, percent * 100, dfmt='%B %d, %Y', prec=3))
+
+
 def main():
     
     user, password = get_connection_info()
@@ -68,6 +92,7 @@ def main():
     
     print_top_articles(cursor)
     print_top_authors(cursor)
+    print_days_with_error(cursor)
     
     conn.close()
 
