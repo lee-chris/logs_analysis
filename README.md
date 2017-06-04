@@ -1,2 +1,36 @@
 # logs_analysis
-Udacity project demonstrating using python to query PostgreSQL
+Udacity project demonstrating using python 3 to query PostgreSQL
+
+## Usage
+
+This project uses the `psycopg2` module. If necessary, this can be installed using:
+
+	pip install psycopg2
+
+To execute, run the following command.
+
+	python logs_analysis.py
+
+You will be immediately prompted for the username and password to connect to the `news`
+database.
+	
+	Enter username: scott
+	Enter password: tiger
+
+Afterwards, you will be presented with the following usage statistics:
+
+	Most popular articles:
+	
+	"Candidate is jerk, alleges rival" - 338647 views
+	"Bears love berries, alleges bear" - 253801 views
+	"Bad things gone, say good people" - 170098 views
+	
+	Most popular authors:
+	
+	Ursula La Multa - 507594 views
+	Rudolf von Treppenwitz - 423457 views
+	Anonymous Contributor - 170098 views
+	
+	Days with high amount of error:
+	
+	July 17, 2016 - 2.28% errors
