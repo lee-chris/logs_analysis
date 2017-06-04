@@ -1,5 +1,7 @@
 # logs_analysis
-Udacity project demonstrating using python 3 to query PostgreSQL
+Udacity project demonstrating using python 3 to query PostgreSQL. This program is used
+to query for statistics from a PostgreSQL database named `news`, which is expected
+to have the table structure defined in `schema.sql`.
 
 ## Usage
 
