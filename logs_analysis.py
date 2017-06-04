@@ -8,6 +8,29 @@ def get_connection_info():
     return user, password
 
     
+def print_top_articles(cursor):
+    """Print the 3 most popular articles."""
+    
+    cursor.execute("""
+        select title, cnt from (
+            select title,
+                   count(*) as cnt
+              from articles a
+              join log l on l.path = '/article/' || a.slug
+            group by title
+            order by cnt desc
+        ) x
+        limit 3
+        """)
+    
+    results = cursor.fetchall()
+    
+    print("\nMost popular articles:\n")
+    
+    for title, count in results:
+        print("\"{0}\" - {1} views".format(title, count))
+
+
 def main():
     
     user, password = get_connection_info()
@@ -15,16 +38,7 @@ def main():
     
     cursor = conn.cursor()
     
-    cursor.execute("select title, cnt from (select title, count(*) as cnt from articles a join log l on l.path = '/article/' || a.slug group by title order by cnt desc) x limit 3")
-    
-    results = cursor.fetchall()
-    
-    print(results)
-    
-    title, count = results[0]
-    
-    print(title)
-    print(count)
+    print_top_articles(cursor)
     
     conn.close()
 
