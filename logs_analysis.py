@@ -79,8 +79,13 @@ def print_days_with_error(cursor):
     
     print("\nDays with high amount of error:\n")
     
-    for day, percent in results:
-        print("{0:{dfmt}} - {1:.{prec}}% errors".format(day, percent * 100, dfmt='%B %d, %Y', prec=3))
+    if (len(results) == 0):
+        print("None")
+    
+    else:
+        for day, percent in results:
+            print("{0:{dfmt}} - {1:.{prec}}% errors"
+                  .format(day, percent * 100, dfmt='%B %d, %Y', prec=3))
 
 
 def main():
