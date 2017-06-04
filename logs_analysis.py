@@ -17,7 +17,8 @@ def print_top_articles(cursor):
             select title,
                    count(*) as cnt
               from articles a
-              join log l on l.path = '/article/' || a.slug
+              join log l
+                on l.path = '/article/' || a.slug
             group by title
             order by cnt desc
         ) x
