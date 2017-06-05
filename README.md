@@ -33,7 +33,7 @@ Afterwards, you will be presented with the following usage statistics:
 	"Bears love berries, alleges bear" - 253801 views
 	"Bad things gone, say good people" - 170098 views
 	
-	Most popular authors:
+	Number of views per author:
 	
 	Ursula La Multa - 507594 views
 	Rudolf von Treppenwitz - 423457 views

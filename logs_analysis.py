@@ -36,8 +36,8 @@ def print_top_articles(cursor):
         print("\"{0}\" - {1} views".format(title, count))
 
 
-def print_top_authors(cursor):
-    """Print the 3 most popular authors."""
+def print_authors(cursor):
+    """Print the number of views per author."""
 
     cursor.execute("""
         select name, cnt from (
@@ -51,12 +51,11 @@ def print_top_authors(cursor):
             group by aut.name
             order by cnt desc
         ) x
-        limit 3
         """)
 
     results = cursor.fetchall()
 
-    print("\nMost popular authors:\n")
+    print("\nNumber of views per author:\n")
 
     for name, count in results:
         print("{0} - {1} views".format(name, count))
@@ -101,7 +100,7 @@ def main():
     cursor = conn.cursor()
 
     print_top_articles(cursor)
-    print_top_authors(cursor)
+    print_authors(cursor)
     print_days_with_error(cursor)
 
     conn.close()
